@@ -130,6 +130,14 @@ router.post("/mark", async (req, res) => {
 
     await attendance.save();
 
+    await createNotification({
+      userId: user._id,
+      title: `${user.name}(${user.role}) Signed-in`,
+      message: `${attendance.status}`,
+      link: `/activity/${attendance._id}`,
+      createdBy: user._id,
+    });
+
     return res.json({
       success: true,
       message: "Attendance marked successfully.",
@@ -195,6 +203,16 @@ router.post("/logout", async (req, res) => {
     await attendance.save();
 
     console.log("✅ Attendance updated to absent:", attendance);
+
+    const data = await User.findById(userId)
+    
+    await createNotification({
+      userId: userId,
+      title: `${data.name}(${data.role}) Signed-out`,
+      message: `${attendance.status}`,
+      link: `/activity/${attendance._id}`,
+      createdBy: userId,
+    });
 
     return res.json({
       success: true,
