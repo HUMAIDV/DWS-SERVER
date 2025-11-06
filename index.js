@@ -9,6 +9,7 @@ import meetingRoutes from "./routes/meetingRoutes.js";
 import documentRoutes from "./routes/documentRoutes.js"
 import leaveRoutes from "./routes/leaveRoutes.js"
 import notificationRoutes from "./routes/notificationRoutes.js"
+import activityRoutes from "./routes/activityRoutes.js";
 
 dotenv.config();
 
@@ -29,6 +30,7 @@ app.use("/api/meetings", meetingRoutes);
 app.use("/api/documents", documentRoutes);
 app.use("/api/leave", leaveRoutes);
 app.use("/api/notifications", notificationRoutes);
+app.use("/api/activity", activityRoutes);
 
 
 // Test Route
