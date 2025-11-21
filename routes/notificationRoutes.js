@@ -38,4 +38,11 @@ router.patch("/:id/read", async (req, res) => {
   }
 });
 
+// Mark all as read
+router.put("/markAllRead", async (req, res) => {
+  await Notification.updateMany({ isRead: false }, { isRead: true });
+  res.json({ success: true });
+});
+
+
 export default router;
