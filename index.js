@@ -74,7 +74,7 @@ const httpServer = createServer(app); // Wrap express app
 
 const io = new Server(httpServer, {
   cors: {
-    origin: "http://localhost:5173", // Your React app
+    origin: ["http://localhost:5173", "https://dwsuite.netlify.app"],
     methods: ["GET", "POST"],
   },
 });
@@ -95,11 +95,11 @@ io.on("connection", (socket) => {
 app.use(cors());
 
 app.use(cors({
-  origin: ["http://localhost:5173", "https://your-frontend-domain.com"],
+  origin: ["http://localhost:5173", "https://dwsuite.netlify.app"],
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
   credentials: true,    // if using cookies or auth headers
 }));
-app.options("*", cors());
+// app.options("*", cors());
 
 
 app.use(express.json({ limit: "10mb" }));
