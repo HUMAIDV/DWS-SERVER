@@ -22,10 +22,15 @@ router.post("/", async (req, res) => {
 
     const transporter = nodemailer.createTransport({
       service: "gmail",
+      port: 587,       // 👈 Use 587 for TLS (working in Render)
+  secure: false,   // 👈 Must be false if using 587
       auth: {
         user: process.env.EMAIL_USER,
         pass: "rbuerlqfepmqwvar",
       },
+      tls: {
+    rejectUnauthorized: false
+  }
     });
 
     for (const e of emails) {
