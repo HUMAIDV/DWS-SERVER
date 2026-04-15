@@ -2,7 +2,7 @@ import User from "../models/User.js";
 
 export const getCurrentUser = async (req, res) => {
   try {
-    const auth0Id = req.user.sub; // comes from Auth0 token
+    const auth0Id = req.user.id; // comes from Auth0 token
     const user = await User.findOne({ auth0Id });
 
     if (!user) {
